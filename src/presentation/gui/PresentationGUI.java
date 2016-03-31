@@ -464,7 +464,6 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
         
         setSize(420, 500); // set window size
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     @Override
