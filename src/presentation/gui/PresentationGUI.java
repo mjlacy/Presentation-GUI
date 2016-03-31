@@ -119,7 +119,7 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
       // enable explicit positioning of GUI components
       
       teamPanel = new JPanel();
-      teamPanel.setBounds(40, 20, 400, 48 );
+      teamPanel.setBounds(40, 20, 400, 48);
       teamPanel.setLayout(null);
       contentPane.add(teamPanel);
 
@@ -341,18 +341,21 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
             }
             catch(SQLException | RuntimeException ex)
             {
-                ex.printStackTrace();               
+                ex.printStackTrace();
                 try
                 {
+                    ImageFrame IF = new ImageFrame();
+                    IF.buildGUI();
+                    
                     AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("E:\\Object Programming 2\\Projects\\Project 2\\Presentation GUI\\Failure.wav").getAbsoluteFile());
                     Clip failure = AudioSystem.getClip();
                     failure.open(AIS);
-                    failure.start();        
+                    failure.start();                   
                 } 
                 catch(Exception exc) 
                 {
                     System.out.println("Error with playing sound.");
-                    ex.printStackTrace();
+                    exc.printStackTrace();
                 }
             }
             catch(Exception ex) 
@@ -421,4 +424,75 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
        grades.put(7, new JLabel("A-"));       
        grades.put(8, new JLabel("A"));
    }
+   
+   public class ImageFrame extends JFrame implements ActionListener{
+
+    JPanel missingNoPanel;
+    
+    public void buildGUI()
+    {
+        Container contentPane = getContentPane();       
+        contentPane.setLayout(null);
+        
+        JPanel wordPanel = new JPanel();
+        wordPanel.setBounds(0, 20, 400, 48);
+        wordPanel.setLayout(null);
+        contentPane.add(wordPanel);
+
+        // set up Instructor Label
+        JLabel errorLabel = new JLabel();
+        errorLabel.setBounds(10, 15, 400, 20);
+        errorLabel.setText("An error has occured, please check your team selection & try again.");
+        wordPanel.add(errorLabel);
+        
+        missingNoPanel = new JPanel();
+        missingNoPanel.setLayout(null);
+        missingNoPanel.setBounds(55, 70, 350, 300);
+        ImagePanel ip = new ImagePanel(new ImageIcon("MissingNo.png").getImage());
+        missingNoPanel.add(ip);
+        contentPane.add(missingNoPanel);
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBounds(0, 390, 350, 50);
+        buttonPanel.setLayout(null);
+        
+        JButton OKButton = new JButton("OK");
+        OKButton.setBounds(160, 10, 85, 30);
+        OKButton.addActionListener(this);
+        buttonPanel.add(OKButton);      
+        contentPane.add(buttonPanel);
+        
+        setSize(420, 500); // set window size
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ev) {
+        setVisible(false);
+    }    
+
+        public class ImagePanel extends JPanel{
+
+          private Image img;
+
+          public ImagePanel(String img) {
+            this(new ImageIcon(img).getImage());
+          }
+
+          public ImagePanel(Image img) {
+            this.img = img;
+            Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+            setPreferredSize(size);
+            setMinimumSize(size);
+            setMaximumSize(size);
+            setSize(size);
+            setLayout(null);
+          }
+
+          public void paintComponent(Graphics g) {
+            g.drawImage(img, 0, 0, null);
+          }
+        }
+    }
 }
