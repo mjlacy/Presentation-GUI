@@ -300,7 +300,7 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
          rs = stmt.executeQuery("select * from EVALUATIONS"); //or else it won't see any other rows    
       } // end try
 
-      catch (SQLException exception)
+      catch (Exception exception)
       {
          exception.printStackTrace();
       }
