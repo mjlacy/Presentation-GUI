@@ -5,7 +5,6 @@
  */
 package presentation.gui;
 
-//import javafx.scene.media.*;
 import javax.sound.sampled.*;
 import java.io.*;
 import java.util.*;
@@ -274,7 +273,7 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
       
       try
       {
-        AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("E:\\Object Programming 2\\Projects\\Project 2\\Presentation GUI\\EVIL!!!.wav").getAbsoluteFile());
+        AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("EVIL!!!.wav").getAbsoluteFile());
         Clip mermaidMan = AudioSystem.getClip();
         mermaidMan.open(AIS);
         mermaidMan.start();        
@@ -334,7 +333,7 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
                 rs.updateString("COMMENTS", comments);
                 rs.updateRow();
 
-                AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("E:\\Object Programming 2\\Projects\\Project 2\\Presentation GUI\\Complete.wav").getAbsoluteFile());
+                AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("Complete.wav").getAbsoluteFile());
                 Clip complete = AudioSystem.getClip();
                 complete.open(AIS);
                 complete.start();        
@@ -347,7 +346,7 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
                     ImageFrame IF = new ImageFrame();
                     IF.buildGUI();
                     
-                    AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("E:\\Object Programming 2\\Projects\\Project 2\\Presentation GUI\\Failure.wav").getAbsoluteFile());
+                    AudioInputStream AIS = AudioSystem.getAudioInputStream(new File("Failure.wav").getAbsoluteFile());
                     Clip failure = AudioSystem.getClip();
                     failure.open(AIS);
                     failure.start();                   
@@ -467,19 +466,22 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
     }
     
     @Override
-    public void actionPerformed(ActionEvent ev) {
+    public void actionPerformed(ActionEvent ev) 
+    {
         setVisible(false);
     }    
 
-        public class ImagePanel extends JPanel{
-
+        public class ImagePanel extends JPanel
+        {
           private Image img;
 
-          public ImagePanel(String img) {
+          public ImagePanel(String img) 
+          {
             this(new ImageIcon(img).getImage());
           }
 
-          public ImagePanel(Image img) {
+          public ImagePanel(Image img) 
+          {
             this.img = img;
             Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
             setPreferredSize(size);
@@ -489,7 +491,8 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
             setLayout(null);
           }
 
-          public void paintComponent(Graphics g) {
+          public void paintComponent(Graphics g) 
+          {
             g.drawImage(img, 0, 0, null);
           }
         }
