@@ -120,7 +120,6 @@ public class PresentationGUI extends JFrame implements ActionListener, ItemListe
       teamPanel = new JPanel();
       teamPanel.setBounds(40, 20, 400, 48);
       teamPanel.setLayout(null);
-      contentPane.add(teamPanel);
 
       // set up Instructor Label
       teamLabel = new JLabel();
